@@ -2,19 +2,41 @@
 <html>
   <head>
     <title>SWL Chatty Page</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
-    <nav>
 
-    </nav>
+    <form id="myNav" class="navbar-form navbar-left navbar-fixed-top" role="search">
+      <div id="navContainer" class="container-fluid">
+        <div class="row">
+
+          <div id="logo" class="col-md-1 col-xs-12">
+             <span>Chatty!</span>
+          </div>
+
+          <div id="formStuff" class="col-md-8 col-sm-6 col-xs-12 form-group">
+             <input type="text" id="message-field" class="form-control" placeholder="Enter Message">
+          </div>
+
+          <button type="submit" id="clear-button" class="btn btn-default">Clear Message Board</button>
+
+        </div>
+
+      </div>
+    </form>
+
     <div id="checkboxes">
-
+      <div class="row">
+            <div class="col-md-2 col-offset-1">
+              <input id="theme" type="checkbox" name="theme"> Dark Theme
+              <input id="textSize" type="checkbox" name="size"> Large Text
+            </div>
     </div>
     <div id="messageboard">
-
+      </div>
     </div>
     <script type="text/javascript" src="script.js"></script>
     <!-- Latest compiled and minified JavaScript -->
