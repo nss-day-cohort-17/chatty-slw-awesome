@@ -22,17 +22,19 @@ function deleteMessage(e){
 
 }
 
-// Function to add a dark them to page
+// Function to add a dark theme to page
 
 function addDarkTheme (e) {
 
-    if (document.getElementById('theme').checked){
+    if (document.getElementById('theme').checked) {
             
-        console.log('hey')
+        document.querySelector('body').className = 'darkThemeBody';
+
+        
 
     } else {
 
-        console.log('hello')
+        document.querySelector('body').className = '';
     
     }
 }
@@ -40,7 +42,7 @@ function addDarkTheme (e) {
 //  Function to add larger text to page
 
 function addLargeText (e) {
-    if (document.getElementById('textSize').checked){
+    if (document.getElementById('textSize').checked) {
             
         console.log('hey')
 

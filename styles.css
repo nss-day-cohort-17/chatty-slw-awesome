@@ -67,3 +67,9 @@ nav {
     padding-top: 1em;
     padding-bottom: 2em;
 }
+
+/*DARKTHEME*/
+.darkThemeBody {
+    background-color: black;
+    color: rgb(57, 255, 20);
+}
