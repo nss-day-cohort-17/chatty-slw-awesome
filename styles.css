@@ -1,0 +1,17 @@
+nav {
+    height: 20vh;
+
+    background-color: tomato;
+}
+
+#checkBoxes {
+    height: 10vh;
+
+    background-color: goldenrod;
+}
+
+#messageBoard {
+    height: 70vh;
+
+    background-color: yellow;
+}
