@@ -24,6 +24,34 @@ function deleteMessage(e){
     }
 }
 
+//  Function that adds New Message to Message Container
+
+function addMessage() {
+    var newMessage = document.getElementById('message-field').value;
+    var newMessageHTML = `<span>${newMessage}</span>`
+
+    if (newMessage === '') {
+        alert('Please enter message');
+    } else {
+    var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
+                                                                                                           <span>${newMessageHTML}</span> <button class="deleteButton">Delete</button>
+                                                                                                        </div>`);
+    document.querySelector("body").addEventListener("click", deleteMessage);
+    }
+    //resets message input to blank
+    document.getElementById('message-field').value = "";
+}
+
+//  Event Listener for enter keypress. Fires add message function
+
+document.getElementById('message-field').addEventListener('keypress', function (e) {
+    var key = e.which || e.keyCode;
+    if (key === 13) {
+        e.preventDefault();
+        addMessage();
+
+    }
+})
 
 
 // Function to test other functions
@@ -48,3 +76,16 @@ var messageRequest = new XMLHttpRequest();
 messageRequest.addEventListener("load", parseMessages);
 messageRequest.open("GET", "messages.json");
 messageRequest.send();
+
+
+//write function to set message board to empty div
+var clearBoard = function(e) {
+  e.preventDefault();
+  document.querySelector('.messageContainer').innerHTML = " ";
+
+}
+
+// Functionality to Clear Message Board
+  //add event listener to button
+var clearBoardBut = document.querySelector("#clear-button");
+clearBoardBut.addEventListener("click", clearBoard);
