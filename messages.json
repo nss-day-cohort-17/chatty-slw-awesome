@@ -1,0 +1,29 @@
+{
+  "messages": [
+    {
+      "userName": "Westley",
+      "message": "Is anyone going to the Festivus Show this weekend?",
+      "date": "Dec 7"
+    },
+    {
+      "userName": "Luke",
+      "message": "Festivus for the REST OF US!",
+      "date": "Dec 7"
+    },
+    {
+      "name": "Sorrel",
+      "message": "I hear Third Eye Blind is going to be there",
+      "date": "Dec 7"
+    },
+    {
+      "name": "Luke",
+      "message": "And Colony House too, I think",
+      "date": "Dec 7"
+    },
+    {
+      "name": "Westley",
+      "message": "That's the details, but is anyone GOING?",
+      "date": "Dec 7"
+    }
+  ]
+}
