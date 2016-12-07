@@ -1,34 +1,25 @@
 /*NAVIGATION*/
 
-#logo {
+#logo span{
     font-size: 30px;
-    letter-spacing: 1px;
+    padding-right: 2%;
 }
 
 #message-field {
-    width: 100%;
+    width: 95%;
     height: 45px;
     font-size: 20px;
+    margin-left: 2%;
 }
 
-#logo {
-    padding-left: 0;
-}
-
-#checkboxes {
-    background-color: red;
-    height: 2000px;
-    border-radius: 25%;
-}
 
 #myNav {
     background: white;
     margin-top: 0;
-    padding-top: 1%;
-    padding-left: 5%;
-    padding-bottom: .5%
+    padding: 1% 0 .5% 5%;
 }
 
 #clear-button {
     font-size: 20px;
+    text-align: center;
 }
