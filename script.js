@@ -21,14 +21,14 @@ function addMessage() {
     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
                                                                                                            <span>${newMessageHTML}</span> <button>Delete</button>
                                                                                                         </div>`);
-    }                    
+    }
 }
 
 //  Event Listener for enter keypress. Fires add message function
 
 document.getElementById('message-field').addEventListener('keypress', function (e) {
     var key = e.which || e.keyCode;
-    if (key === 13) { 
+    if (key === 13) {
         e.preventDefault();
         addMessage();
 
