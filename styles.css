@@ -4,6 +4,10 @@ body {
     padding-top:  70px;
 }
 
+/*.darkbody {
+    background-color: black;
+}*/
+
 nav {
     height: 20vh;
 
@@ -20,7 +24,8 @@ nav {
 
 .messageContainer {
     border: 1px solid black;
-    height: 70vh;
+    height: 90vh;
+    overflow: auto;
 }
 
 /*NAVIGATION*/
@@ -37,8 +42,8 @@ nav {
 
 #message-field {
     width: 95%;
-/*    height: 45px;
-*/    font-size: 20px;
+    height: 45px;
+    font-size: 20px;
     margin-left: 2%;
 }
 
@@ -47,6 +52,7 @@ nav {
     background: white;
     margin-top: 0;
     padding: 1% 0 .5% 5%;
+    background: linear-gradient(to bottom, white, rgba(255,255,255,.92))
 }
 
 #clear-button {
