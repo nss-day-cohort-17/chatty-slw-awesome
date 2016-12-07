@@ -32,18 +32,17 @@ messageRequest.send();
 
 
 //Creat Function to disable clearMessageBoard button if no messages
+//Also checks to see if messages to know whether to activate or disable button
 
 var checkForMessages = function () {
   //test for empty string
   if (document.querySelector('.messageContainer').innerHTML === " ") {
-  //if so, disable button
+  //if empty, disable button
   clearBoardBut.setAttribute("disabled", "disabled");
-  //else, keep button active
-  } else {
-    if (document.querySelector('.messageContainer').innerHTML !== " ") {
+  //else, keep button active/ make button active
+  } else if (document.querySelector('.messageContainer').innerHTML !== " ") {
       clearBoardBut.removeAttribute("disabled", "disabled");
     }
-  }
 }
 
 
@@ -53,6 +52,7 @@ var checkForMessages = function () {
 
 //write function to set message board to empty div
 var clearBoard = function(e) {
+  //prevent page from auto reloading on submit with button pressed
   e.preventDefault();
   document.querySelector('.messageContainer').innerHTML = " ";
     //call function to disable clear messages button if not messages on board
