@@ -1,3 +1,28 @@
+/*********BODY*/
+
+body {
+    padding-top:  70px;
+}
+
+nav {
+    height: 20vh;
+
+
+}
+
+#checkBoxes {
+    height: 10vh;
+
+
+}
+
+
+
+.messageContainer {
+    border: 1px solid black;
+    height: 70vh;
+}
+
 /*NAVIGATION*/
 
 #logo span {
@@ -6,10 +31,14 @@
 
 }
 
+#logo {
+    margin-right: 1em;
+}
+
 #message-field {
     width: 95%;
-    height: 45px;
-    font-size: 20px;
+/*    height: 45px;
+*/    font-size: 20px;
     margin-left: 2%;
 }
 
@@ -23,4 +52,12 @@
 #clear-button {
     font-size: 20px;
     text-align: center;
+}
+
+/*Checkboxes*/
+
+
+#checkboxes {
+    padding-top: 1em;
+    padding-bottom: 2em;
 }
