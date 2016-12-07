@@ -1,0 +1,29 @@
+#logo {
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+#message-field {
+    width: 100%;
+    height: 45px;
+    font-size: 20px;
+}
+
+#logo {
+    padding-left: 7%;
+}
+
+#checkboxes {
+    background-color: red;
+}
+
+#myNav {
+    background: white;
+    margin-top: 0;
+    padding-top: 1%
+}
+
+#clear-button {
+    font-size: 20px;
+    
+}
