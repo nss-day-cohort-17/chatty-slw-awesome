@@ -5,10 +5,35 @@ function addDefaultMessages(){
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
                                                                                         <span>${messageObject.defaultMessageList[i].message}</span> <button>Delete</button>
-                                                                                    </div`)
+                                                                                    </div>`)
     }
 }
 
+//  Function that adds New Message to Message Container
+
+function addMessage() {
+    var newMessage = document.getElementById('message-field').value;
+    var newMessageHTML = `<span>${newMessage}</span>`
+
+    if (newMessage === '') {
+        alert('Please enter message');
+    } else {
+    var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
+                                                                                                           <span>${newMessageHTML}</span> <button>Delete</button>
+                                                                                                        </div>`);
+    }                    
+}
+
+//  Event Listener for enter keypress. Fires add message function
+
+document.getElementById('message-field').addEventListener('keypress', function (e) {
+    var key = e.which || e.keyCode;
+    if (key === 13) { 
+        e.preventDefault();
+        addMessage();
+
+    }
+})
 
 
 // Function to test other functions
