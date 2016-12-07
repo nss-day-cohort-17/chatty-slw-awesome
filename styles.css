@@ -1,6 +1,8 @@
+/*NAVIGATION*/
+
 #logo {
     font-size: 30px;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
 }
 
 #message-field {
@@ -10,20 +12,23 @@
 }
 
 #logo {
-    padding-left: 7%;
+    padding-left: 0;
 }
 
 #checkboxes {
     background-color: red;
+    height: 2000px;
+    border-radius: 25%;
 }
 
 #myNav {
     background: white;
     margin-top: 0;
-    padding-top: 1%
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-bottom: .5%
 }
 
 #clear-button {
     font-size: 20px;
-    
 }
