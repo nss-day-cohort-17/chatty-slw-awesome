@@ -1,17 +1,63 @@
+/*********BODY*/
+
+body {
+    padding-top:  70px;
+}
+
 nav {
     height: 20vh;
 
-    background-color: tomato;
+
 }
 
 #checkBoxes {
     height: 10vh;
 
-    background-color: goldenrod;
+
 }
 
-#messageBoard {
-    height: 70vh;
 
-    background-color: yellow;
+
+.messageContainer {
+    border: 1px solid black;
+    height: 70vh;
+}
+
+/*NAVIGATION*/
+
+#logo span {
+    font-size: 30px;
+    font-family: 'Gloria Hallelujah', cursive;
+
+}
+
+#logo {
+    margin-right: 1em;
+}
+
+#message-field {
+    width: 95%;
+/*    height: 45px;
+*/    font-size: 20px;
+    margin-left: 2%;
+}
+
+
+#myNav {
+    background: white;
+    margin-top: 0;
+    padding: 1% 0 .5% 5%;
+}
+
+#clear-button {
+    font-size: 20px;
+    text-align: center;
+}
+
+/*Checkboxes*/
+
+
+#checkboxes {
+    padding-top: 1em;
+    padding-bottom: 2em;
 }

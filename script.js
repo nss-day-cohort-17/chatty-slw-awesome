@@ -1,33 +1,31 @@
 
-// Gloabl messagesList variable to store messages
-var messagesList;
-
-// Import Json
-var requestDefaultMessages = new XMLHttpRequest();
-requestDefaultMessages.addEventListener("load", loadDefaultMessages)
-requestDefaultMessages.open("GET", "messages.json")
-requestDefaultMessages.send()
-
-// callback function for XMLHttp request
-function loadDefaultMessages(event) {
-    console.log("loadDefaultMessages function called")
-
-    messagesList = JSON.parse(event.target.responseText);
-
-    console.log(messagesList)
-    console.log(messagesList.defaultMessageList)
-
-    addDefaultMessages();
-}
-
 function addDefaultMessages(){
-    //console.log("addDefaultMessages function called")
-    //console.log("messageList Length", messagesList.length)
 
-    for (var i = 0; i < messagesList.defaultMessageList.length; i++) {
-        //console.log("message for loop ", messagesList.defaultMessagesList[i].message)
+    for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
+
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span>${messagesList.defaultMessageList[i].message}</span> <button>Delete</button>
+                                                                                        <span>${messageObject.defaultMessageList[i].message}</span> <button>Delete</button>
                                                                                     </div`)
     }
 }
+
+
+
+// Function to test other functions
+
+var test = function() {
+  console.log("Your function works!");
+}
+
+var messageObject;
+//Parsed JSON file to get messages as javascript object
+var parseMessages = function(e) {
+  messageObject = JSON.parse(e.target.responseText);
+  addDefaultMessages();
+}
+
+//Request to JSON file to get placeholder messages
+var messageRequest = new XMLHttpRequest();
+messageRequest.addEventListener("load", parseMessages);
+messageRequest.open("GET", "messages.json");
+messageRequest.send();
