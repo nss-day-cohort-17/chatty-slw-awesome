@@ -4,8 +4,23 @@ function addDefaultMessages(){
     for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span>${messageObject.defaultMessageList[i].message}</span> <button>Delete</button>
-                                                                                    </div>`)
+                                                                                        <span>${messageObject.defaultMessageList[i].message}</span> <button class="deleteButton">Delete</button>
+                                                                                    </div`)
+        document.querySelector("body").addEventListener("click", deleteMessage);
+    }
+}
+
+
+function deleteMessage(e){
+    //console.log("deleteMessage function called")
+    console.log("event ", e)
+
+    if (event.target.className === "deleteButton"){
+        //console.log("delete button clicked")
+        //console.log(event.target.parentElement);
+
+        var removeThisDiv = event.target.parentElement
+        event.target.parentElement.parentNode.removeChild(removeThisDiv);
     }
 }
 
@@ -19,9 +34,12 @@ function addMessage() {
         alert('Please enter message');
     } else {
     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
-                                                                                                           <span>${newMessageHTML}</span> <button>Delete</button>
+                                                                                                           <span>${newMessageHTML}</span> <button class="deleteButton">Delete</button>
                                                                                                         </div>`);
+    document.querySelector("body").addEventListener("click", deleteMessage);
     }
+    //resets message input to blank
+    document.getElementById('message-field').value = "";
 }
 
 //  Event Listener for enter keypress. Fires add message function
@@ -48,6 +66,10 @@ var parseMessages = function(e) {
   messageObject = JSON.parse(e.target.responseText);
   addDefaultMessages();
 }
+
+
+// delete button event listener
+//document.querySelector(".deleteButton").addEventListener("click", deleteMessage);
 
 //Request to JSON file to get placeholder messages
 var messageRequest = new XMLHttpRequest();
