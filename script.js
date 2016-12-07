@@ -31,11 +31,32 @@ messageRequest.open("GET", "messages.json");
 messageRequest.send();
 
 
+//Creat Function to disable clearMessageBoard button if no messages
+
+var checkForMessages = function () {
+  //test for empty string
+  if (document.querySelector('.messageContainer').innerHTML === " ") {
+  //if so, disable button
+  clearBoardBut.setAttribute("disabled", "disabled");
+  //else, keep button active
+  } else {
+    if (document.querySelector('.messageContainer').innerHTML !== " ") {
+      clearBoardBut.removeAttribute("disabled", "disabled");
+    }
+  }
+}
+
+
+
+
+
+
 //write function to set message board to empty div
 var clearBoard = function(e) {
   e.preventDefault();
   document.querySelector('.messageContainer').innerHTML = " ";
-
+    //call function to disable clear messages button if not messages on board
+  checkForMessages();
 }
 
 // Functionality to Clear Message Board
