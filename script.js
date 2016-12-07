@@ -29,3 +29,16 @@ var messageRequest = new XMLHttpRequest();
 messageRequest.addEventListener("load", parseMessages);
 messageRequest.open("GET", "messages.json");
 messageRequest.send();
+
+
+//write function to set message board to empty div
+var clearBoard = function(e) {
+  e.preventDefault();
+  document.querySelector('.messageContainer').innerHTML = " ";
+
+}
+
+// Functionality to Clear Message Board
+  //add event listener to button
+var clearBoardBut = document.querySelector("#clear-button");
+clearBoardBut.addEventListener("click", clearBoard);
