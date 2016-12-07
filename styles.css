@@ -26,6 +26,7 @@ nav {
     border: 1px solid black;
     height: 90vh;
     overflow: auto;
+    font-size:20px;
 }
 
 /*NAVIGATION*/
@@ -52,7 +53,7 @@ nav {
     background: white;
     margin-top: 0;
     padding: 1% 0 .5% 5%;
-    background: linear-gradient(to bottom, white, rgba(255,255,255,.92))
+/*    background: linear-gradient(to bottom, white, rgba(255,255,255,.92))*/
 }
 
 #clear-button {
@@ -70,6 +71,9 @@ nav {
 
 /*DARKTHEME*/
 .darkThemeBody {
-    background-color: black;
-    color: rgb(57, 255, 20);
+    background-color: darkgrey;
+}
+
+.darkText {
+    color:white;
 }

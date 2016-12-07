@@ -30,12 +30,15 @@ function addDarkTheme (e) {
             
         document.querySelector('body').className = 'darkThemeBody';
 
-        
+        document.getElementById("message-container").setAttribute("style", "color: white;");
+
+        // buttons??? divss?????
 
     } else {
 
         document.querySelector('body').className = '';
-    
+        
+        document.getElementById("message-container").setAttribute("style", "color: black;")
     }
 }
 
@@ -44,11 +47,12 @@ function addDarkTheme (e) {
 function addLargeText (e) {
     if (document.getElementById('textSize').checked) {
             
-        console.log('hey')
+        document.querySelector('#message-container').setAttribute("style", "font-size: 30px;");
+
 
     } else {
 
-        console.log('hello')
+        document.querySelector('#message-container').setAttribute("style", "font-size: 20px;");
     
     }
 }
