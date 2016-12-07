@@ -1,8 +1,9 @@
 /*NAVIGATION*/
 
-#logo span{
+#logo span {
     font-size: 30px;
-    padding-right: 2%;
+    font-family: 'Gloria Hallelujah', cursive;
+
 }
 
 #message-field {
