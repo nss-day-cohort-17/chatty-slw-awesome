@@ -9,6 +9,17 @@ function addDefaultMessages(){
     }
 }
 
+function addMessage() {
+    
+}
+
+document.getElementById('message-field').addEventListener('keypress', function (e) {
+    var key = e.which || e.keyCode;
+    if (key === 13) { 
+        e.preventDefault();
+        console.log('hey')
+    }
+})
 
 
 // Function to test other functions
