@@ -1,6 +1,22 @@
+//Create Function to disable clearMessageBoard button if no messages
+//Also checks to see if messages to know whether to activate or disable button
+
+var checkForMessages = function () {
+  //test for empty string
+  if (document.querySelector('.messageContainer').innerHTML.trim() === "") {
+  //if empty, disable button
+  clearBoardBut.setAttribute("disabled", "disabled");
+  //else, keep button active/ make button active
+  } else  {
+      clearBoardBut.removeAttribute("disabled", "disabled");
+    }
+}
+
+
+
+//Loads Default Messages into Page
 
 function addDefaultMessages(){
-
     for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
@@ -11,14 +27,20 @@ function addDefaultMessages(){
 }
 
 
-function deleteMessage(e){
 
+
+
+//Function deletes messages on the individual delete message button
+
+function deleteMessage(event){
 
     if (event.target.className.split(' ')[0] === "deleteButton") {
 
         var removeThisDiv = event.target.parentElement
         event.target.parentElement.parentNode.removeChild(removeThisDiv);
     }
+    checkForMessages();
+    console.log( typeof document.querySelector('.messageContainer').innerHTML);
 
 }
 
@@ -27,15 +49,15 @@ function deleteMessage(e){
 function addDarkTheme (e) {
 
     if (document.getElementById('theme').checked) {
-            
+
         document.querySelector('body').className = 'darkThemeBody';
 
         document.getElementById("message-container").setAttribute("style", "color: white;");
-    
+
     } else {
 
         document.querySelector('body').className = '';
-        
+
         document.getElementById("message-container").setAttribute("style", "color: black;")
 
     }
@@ -44,9 +66,9 @@ function addDarkTheme (e) {
 //  Function to add larger text to page
 
 function addLargeText (e) {
-   
+
     if (document.getElementById('textSize').checked) {
-            
+
         document.querySelector('#message-container').setAttribute("style", "font-size: 30px;");
 
     }
@@ -54,7 +76,7 @@ function addLargeText (e) {
     else  {
 
         document.querySelector('#message-container').setAttribute("style", "font-size: 17px;");
-    
+
     }
 }
 
@@ -80,6 +102,7 @@ function addMessage() {
     }
     //resets message input to blank
     document.getElementById('message-field').value = "";
+    checkForMessages();
 }
 
 //  Event Listener for enter keypress. Fires add message function
@@ -94,68 +117,28 @@ document.getElementById('message-field').addEventListener('keypress', function (
 })
 
 
-//Create Function to disable clearMessageBoard button if no messages
-//Also checks to see if messages to know whether to activate or disable button
-
-var checkForMessages = function () {
-  //test for empty string
-  if (document.querySelector('.messageContainer').innerHTML === " ") {
-  //if empty, disable button
-  clearBoardBut.setAttribute("disabled", "disabled");
-  //else, keep button active/ make button active
-  } else if (document.querySelector('.messageContainer').innerHTML !== " ") {
-      clearBoardBut.removeAttribute("disabled", "disabled");
-    }
-}
 
 
 
 
 
 
-//this function adds functionality to the delete button on the messages themselves
-function deleteMessage(e){
-    //console.log("deleteMessage function called")
-    console.log("event ", e)
 
-    if (event.target.className === "deleteButton"){
-        //console.log("delete button clicked")
-        //console.log(event.target.parentElement);
+// //this function adds functionality to the delete button on the messages themselves
+// function deleteMessage(e){
+//     //console.log("deleteMessage function called")
+//     console.log("event ", e)
 
-        var removeThisDiv = event.target.parentElement
-        event.target.parentElement.parentNode.removeChild(removeThisDiv);
-    }
-}
+//     if (event.target.className === "deleteButton"){
+//         //console.log("delete button clicked")
+//         //console.log(event.target.parentElement);
 
-// //  Function that adds New Message to Message Container
-
-// function addMessage() {
-//     var newMessage = document.getElementById('message-field').value;
-//     var newMessageHTML = `<span>${newMessage}</span>`
-
-//     if (newMessage === '') {
-//         alert('Please enter message');
-//     } else {
-//     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
-//                                                                                                            <span>${newMessageHTML}</span> <button class="deleteButton">Delete</button>
-//                                                                                                         </div>`);
-//     document.querySelector("body").addEventListener("click", deleteMessage);
+//         var removeThisDiv = event.target.parentElement
+//         event.target.parentElement.parentNode.removeChild(removeThisDiv);
 //     }
-//     //resets message input to blank
-//     document.getElementById('message-field').value = "";
-//     checkForMessages();
+//     // checkForMessages();
 // }
 
-// //  Event Listener for enter keypress. Fires add message function
-
-// document.getElementById('message-field').addEventListener('keypress', function (e) {
-//     var key = e.which || e.keyCode;
-//     if (key === 13) {
-//         e.preventDefault();
-//         addMessage();
-
-//     }
-// })
 
 
 // Function to test other functions
@@ -193,7 +176,7 @@ messageRequest.send();
 var clearBoard = function(e) {
   //prevent page from auto reloading on submit with button pressed
   e.preventDefault();
-  document.querySelector('.messageContainer').innerHTML = " ";
+  document.querySelector('.messageContainer').innerHTML = "";
     //call function to disable clear messages button if not messages on board
   checkForMessages();
 }
