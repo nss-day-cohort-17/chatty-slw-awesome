@@ -15,8 +15,16 @@ nav {
     margin-left: 2%;
     width: 15%;
     margin-bottom: 2%;
-    font-size: 100%;
-    min-width: 90px;
+    font-size: 75%;
+    min-width: 60px;
+}
+
+.editButton {
+    margin-left: 2%;
+    width: 15%;
+    margin-bottom: 2%;
+    font-size: 75%;
+    min-width: 60px;
 }
 
 .messageContainer {

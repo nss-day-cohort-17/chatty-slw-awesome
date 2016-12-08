@@ -31,7 +31,9 @@ function addDefaultMessages(){
     for (var i = 0; i < messageArray.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span class="userName">${messageArray[i].user} </span><span class="messageContent">${messageArray[i].message} </span><span class="messageTime"> ${messageArray[i].time}</span><button class="deleteButton btn btn-default">Delete</button>
+
+                                                                                        <span class="userName">${messageArray[i].user} </span><span class="messageContent">${messageArray[i].message} </span><span class="messageTime"> ${messageArray[i].time}</span><button class="editButton btn btn-default">Edit</button><button class="deleteButton btn btn-default">Delete</button>
+
                                                                                     </div`)
         numberOfMessages++;
     }
@@ -52,8 +54,25 @@ function deleteMessage(event){
     }
     checkForMessages();
 
-
 }
+
+// function that brings up an input to edit old message on button press
+
+function editMessage(event){
+
+
+    if (event.target.className.split(' ')[0] === "editButton") {
+
+      console.log(event)
+
+      var currentMessageText = event.path[1].querySelector('.messageContent').innerText;
+
+      event.path[1].querySelector('.messageContent').outerHTML = `<input type="text" id="edit-message-field" class="form-control" value="${currentMessageText}">`
+
+    }
+    // checkForMessages();
+}
+
 
 
 // Function to add a dark theme to page
@@ -130,13 +149,17 @@ function addMessage() {
     console.log(newDate);
     var user = document.getElementById("selectUser").value;
     var newMessage = document.getElementById('message-field').value;
+// <<<<<<< HEAD
+//     var newMessageHTML = `<span class="messageContent">${newMessage}</span>`
+// =======
     var newMessageHTML = `<span class="userName">${user} </span><span>${newMessage} <span class="messageTime">${newDate}</span></span>`
+// >>>>>>> BETA
 
     if (newMessage === '') {
         alert('Please enter message');
     } else {
     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
-                                                                                                           <span>${newMessageHTML}</span> <button class="deleteButton btn btn-default">Delete</button>
+                                                                                                           <span>${newMessageHTML}</span> <span class="messageTime">${newDate}</span><button class="editButton btn btn-default">Edit</button><button class="deleteButton btn btn-default">Delete</button>
                                                                                                         </div>`);
     }
     //resets message input to blank
@@ -236,3 +259,20 @@ clearBoardBut.addEventListener("click", clearBoard);
 
 // Event listener for delete buttons
 document.querySelector("body").addEventListener("click", deleteMessage);
+
+document.querySelector("body").addEventListener("click", editMessage);
+
+document.querySelector('body').addEventListener('keypress', editMessageEnterKey)
+
+function editMessageEnterKey(e) {
+    var key = e.which || e.keyCode;
+      if (key === 13) {
+
+     if (e.path[0].className === 'form-control') {
+      var editedMessage = e.path[0].value;
+
+      e.path[0].outerHTML = `<span class="messageContent">${editedMessage}</span> `
+     }
+  }
+
+}
