@@ -117,8 +117,9 @@ function addMessage() {
 
     var newDate = new Date();
     console.log(newDate);
+    var user = document.getElementById("selectUser").value;
     var newMessage = document.getElementById('message-field').value;
-    var newMessageHTML = `<span>${newMessage} <span class="messageTime">${newDate}</span></span>`
+    var newMessageHTML = `<span class="userName">${user} </span><span>${newMessage} <span class="messageTime">${newDate}</span></span>`
 
     if (newMessage === '') {
         alert('Please enter message');
