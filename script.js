@@ -6,7 +6,6 @@ function addDefaultMessages(){
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
                                                                                         <span>${messageObject.defaultMessageList[i].message}</span> <button class="deleteButton btn btn-default">Delete</button>
                                                                                     </div`)
-        document.querySelector("body").addEventListener("click", deleteMessage);
     }
 }
 
@@ -25,17 +24,34 @@ function deleteMessage(e){
 // Function to add a dark theme to page
 
 function addDarkTheme (e) {
+    console.log(document.getElementById('theme').checked, "dark theme checked?")
+    console.log(document.getElementById('textSize').checked, "large text checked?")
 
-    if (document.getElementById('theme').checked) {
-            
+    if (document.getElementById('theme').checked && document.getElementById('textSize').checked) {
+
+      document.querySelector('body').className = 'darkThemeBody';
+
+      document.getElementById("message-container").setAttribute("style", "color: white; font-size: 30px;");
+
+      //document.querySelector('#message-container').setAttribute("style", "font-size: 30px;");
+
+    }
+    else if(document.getElementById('theme').checked === false && document.getElementById('textSize').checked) {
+      document.querySelector('body').className = '';
+      document.getElementById("message-container").setAttribute("style", "color: black;")
+      document.querySelector('#message-container').setAttribute("style", "font-size: 30px;");
+    }
+
+    else if (document.getElementById('theme').checked) {
+
         document.querySelector('body').className = 'darkThemeBody';
 
         document.getElementById("message-container").setAttribute("style", "color: white;");
-    
+
     } else {
 
         document.querySelector('body').className = '';
-        
+
         document.getElementById("message-container").setAttribute("style", "color: black;")
 
     }
@@ -44,9 +60,22 @@ function addDarkTheme (e) {
 //  Function to add larger text to page
 
 function addLargeText (e) {
-   
-    if (document.getElementById('textSize').checked) {
-            
+    console.log(document.getElementById('theme').checked, "dark theme checked?")
+    console.log(document.getElementById('textSize').checked, "large text checked?")
+
+    if (document.getElementById('theme').checked && document.getElementById('textSize').checked) {
+      document.querySelector('body').className = 'darkThemeBody';
+
+      document.getElementById("message-container").setAttribute("style", "color: white; font-size: 30px;");
+    }
+    else if(document.getElementById('theme').checked && document.getElementById('textSize').checked === false) {
+       document.querySelector('body').className = 'darkThemeBody';
+
+      document.getElementById("message-container").setAttribute("style", "color: white; font-size: 17px");
+    }
+
+    else if (document.getElementById('textSize').checked) {
+
         document.querySelector('#message-container').setAttribute("style", "font-size: 30px;");
 
     }
@@ -54,7 +83,7 @@ function addLargeText (e) {
     else  {
 
         document.querySelector('#message-container').setAttribute("style", "font-size: 17px;");
-    
+
     }
 }
 
@@ -76,7 +105,6 @@ function addMessage() {
     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
                                                                                                            <span>${newMessageHTML}</span> <button class="deleteButton btn btn-default">Delete</button>
                                                                                                         </div>`);
-    document.querySelector("body").addEventListener("click", deleteMessage);
     }
     //resets message input to blank
     document.getElementById('message-field').value = "";
@@ -118,7 +146,7 @@ function deleteMessage(e){
     //console.log("deleteMessage function called")
     console.log("event ", e)
 
-    if (event.target.className === "deleteButton"){
+    if (event.target.className.split(' ')[0] === "deleteButton"){
         //console.log("delete button clicked")
         //console.log(event.target.parentElement);
 
@@ -202,3 +230,7 @@ var clearBoard = function(e) {
   //add event listener to button
 var clearBoardBut = document.querySelector("#clear-button");
 clearBoardBut.addEventListener("click", clearBoard);
+
+
+// Event listener for delete buttons
+document.querySelector("body").addEventListener("click", deleteMessage);
