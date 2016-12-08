@@ -20,7 +20,7 @@ function addDefaultMessages(){
     for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span>${messageObject.defaultMessageList[i].message}</span> <button class="deleteButton btn btn-default">Delete</button>
+                                                                                        <span class="userName">${messageObject.defaultMessageList[i].user} </span><span class="messageContent">${messageObject.defaultMessageList[i].message} </span><span class="messageTime"> ${messageObject.defaultMessageList[i].time}</span><button class="deleteButton btn btn-default">Delete</button>
                                                                                     </div`)
     }
 }
