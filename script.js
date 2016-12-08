@@ -44,6 +44,7 @@ function deleteMessage(event){
 
 }
 
+
 // Function to add a dark theme to page
 
 function addDarkTheme (e) {
@@ -113,8 +114,11 @@ document.getElementById('textSize').addEventListener('change', addLargeText);
 //  Function that adds New Message to Message Container
 
 function addMessage() {
+
+    var newDate = new Date();
+    console.log(newDate);
     var newMessage = document.getElementById('message-field').value;
-    var newMessageHTML = `<span>${newMessage}</span>`
+    var newMessageHTML = `<span>${newMessage} <span class="messageTime">${newDate}</span></span>`
 
     if (newMessage === '') {
         alert('Please enter message');
