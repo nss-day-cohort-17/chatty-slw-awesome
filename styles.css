@@ -1,12 +1,9 @@
 /*********BODY*/
 
 body {
-    padding-top:  70px;
+    padding-top: 80px;
 }
 
-/*.darkbody {
-    background-color: black;
-}*/
 
 nav {
     height: 20vh;
@@ -14,24 +11,25 @@ nav {
 
 }
 
-#checkBoxes {
-    height: 10vh;
-
-
+.deleteButton {
+    margin-left: 2%;
+    width: 15%;
+    margin-bottom: 2%;
+    font-size: 100%;
+    min-width: 90px;
 }
-
-
 
 .messageContainer {
     border: 1px solid black;
     height: 90vh;
     overflow: auto;
-    font-size:20px;
+    font-size:17px;
+    padding: 2%;
 }
 
 /*NAVIGATION*/
 
-#logo span {
+#logo > span {
     font-size: 30px;
     font-family: 'Gloria Hallelujah', cursive;
 
@@ -45,15 +43,14 @@ nav {
     width: 95%;
     height: 45px;
     font-size: 20px;
-    margin-left: 2%;
+    margin-left: 4%;
 }
 
 
 #myNav {
     background: white;
     margin-top: 0;
-    padding: 1% 0 .5% 5%;
-/*    background: linear-gradient(to bottom, white, rgba(255,255,255,.92))*/
+    padding: 1% 0 1% 3%;
 }
 
 #clear-button {
@@ -65,8 +62,21 @@ nav {
 
 
 #checkboxes {
-    padding-top: 1em;
     padding-bottom: 2em;
+    font-size: 20px;
+    padding-right: 10%;
+}
+
+#checkBoxes {
+    height: 10vh;
+
+
+}
+
+label {
+    margin-right: 3%;
+    margin-left: 4%;
+    font-weight: 400;
 }
 
 /*DARKTHEME*/
