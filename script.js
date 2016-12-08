@@ -41,8 +41,9 @@ function deleteMessage(event){
     }
     checkForMessages();
 
-
 }
+
+// function that brings up an input to edit old message on button press
 
 function editMessage(event){
 
@@ -51,17 +52,14 @@ function editMessage(event){
 
       console.log(event)
 
-      // 
-
       var currentMessageText = event.path[1].querySelector('.messageContent').innerText;
 
       event.path[1].querySelector('.messageContent').outerHTML = `<input type="text" id="edit-message-field" class="form-control" value="${currentMessageText}">`
 
     }
     // checkForMessages();
-
-
 }
+
 
 
 // Function to add a dark theme to page
@@ -222,3 +220,26 @@ clearBoardBut.addEventListener("click", clearBoard);
 document.querySelector("body").addEventListener("click", deleteMessage);
 
 document.querySelector("body").addEventListener("click", editMessage);
+
+document.querySelector('body').addEventListener('keypress', editMessageEnterKey)
+
+function editMessageEnterKey(e) {
+    var key = e.which || e.keyCode;
+      if (key === 13) {
+     
+     if (e.path[0].className === 'form-control') {
+      var editedMessage = e.path[0].value;
+
+      e.path[0].outerHTML = `<span class="messageContent">${editedMessage}</span> `
+     }
+  }
+
+}
+// document.getElementById('edit-message-field').addEventListener('keypress', function (e) {
+//     var key = e.which || e.keyCode;
+//     if (key === 13) {
+      
+//         console.log('HEY');
+
+//     }
+// })
