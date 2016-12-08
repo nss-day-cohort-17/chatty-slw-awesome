@@ -145,6 +145,28 @@ function checkNumberOfMessages() {
   }
 }
 
+
+function addAvailableUsers () {
+  console.log("addAvailableUsers function called")
+  var userSelectDropdown = document.getElementById("selectUser");
+
+  console.log(users.names.length, "users names array length")
+
+  for (var i = 0; i < users.names.length; i++) {
+    console.log(users.names[i], "current user")
+    userSelectDropdown.insertAdjacentHTML('beforeend', `<option>${users.names[i]}</option>`);
+  }
+}
+
+
+var users = {
+  names: ["Xavier", "Joanna", "Mackenzie", "Gunter", "Iveta", "Sven"]
+};
+
+addAvailableUsers();
+
+
+
 //  Event Listener for enter keypress. Fires add message function
 
 document.getElementById('message-field').addEventListener('keypress', function (e) {
