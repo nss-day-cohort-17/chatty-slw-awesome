@@ -4,7 +4,7 @@ function addDefaultMessages(){
     for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span>${messageObject.defaultMessageList[i].message}</span> <button class="deleteButton">Delete</button>
+                                                                                        <span>${messageObject.defaultMessageList[i].message}</span> <button class="deleteButton btn btn-default">Delete</button>
                                                                                     </div`)
         document.querySelector("body").addEventListener("click", deleteMessage);
     }
@@ -12,17 +12,57 @@ function addDefaultMessages(){
 
 
 function deleteMessage(e){
-    //console.log("deleteMessage function called")
-    console.log("event ", e)
 
-    if (event.target.className === "deleteButton"){
-        //console.log("delete button clicked")
-        //console.log(event.target.parentElement);
+
+    if (event.target.className.split(' ')[0] === "deleteButton") {
 
         var removeThisDiv = event.target.parentElement
         event.target.parentElement.parentNode.removeChild(removeThisDiv);
     }
+
 }
+
+// Function to add a dark theme to page
+
+function addDarkTheme (e) {
+
+    if (document.getElementById('theme').checked) {
+            
+        document.querySelector('body').className = 'darkThemeBody';
+
+        document.getElementById("message-container").setAttribute("style", "color: white;");
+    
+    } else {
+
+        document.querySelector('body').className = '';
+        
+        document.getElementById("message-container").setAttribute("style", "color: black;")
+
+    }
+}
+
+//  Function to add larger text to page
+
+function addLargeText (e) {
+   
+    if (document.getElementById('textSize').checked) {
+            
+        document.querySelector('#message-container').setAttribute("style", "font-size: 30px;");
+
+    }
+
+    else  {
+
+        document.querySelector('#message-container').setAttribute("style", "font-size: 17px;");
+    
+    }
+}
+
+
+
+document.getElementById('theme').addEventListener('change', addDarkTheme);
+
+document.getElementById('textSize').addEventListener('change', addLargeText);
 
 //  Function that adds New Message to Message Container
 
@@ -34,7 +74,7 @@ function addMessage() {
         alert('Please enter message');
     } else {
     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
-                                                                                                           <span>${newMessageHTML}</span> <button class="deleteButton">Delete</button>
+                                                                                                           <span>${newMessageHTML}</span> <button class="deleteButton btn btn-default">Delete</button>
                                                                                                         </div>`);
     document.querySelector("body").addEventListener("click", deleteMessage);
     }
