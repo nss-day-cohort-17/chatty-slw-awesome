@@ -20,7 +20,7 @@ function addDefaultMessages(){
     for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span class="userName">${messageObject.defaultMessageList[i].user} </span><span class="messageContent">${messageObject.defaultMessageList[i].message} </span><span class="messageTime"> ${messageObject.defaultMessageList[i].time}</span><button class="deleteButton btn btn-default">Delete</button>
+                                                                                        <span class="userName">${messageObject.defaultMessageList[i].user} </span><span class="messageContent">${messageObject.defaultMessageList[i].message} </span><span class="messageTime"> ${messageObject.defaultMessageList[i].time}</span><button class="editButton btn btn-default">Edit</button><button class="deleteButton btn btn-default">Delete</button>
                                                                                     </div`)
         numberOfMessages++;
     }
@@ -40,6 +40,25 @@ function deleteMessage(event){
         event.target.parentElement.parentNode.removeChild(removeThisDiv);
     }
     checkForMessages();
+
+
+}
+
+function editMessage(event){
+
+    
+    if (event.target.className.split(' ')[0] === "editButton") {
+
+      console.log(event)
+
+      // 
+
+      var currentMessageText = event.path[1].querySelector('.messageContent').innerText;
+
+      event.path[1].querySelector('.messageContent').outerHTML = `<input type="text" id="edit-message-field" class="form-control" value="${currentMessageText}">`
+
+    }
+    // checkForMessages();
 
 
 }
@@ -118,13 +137,13 @@ function addMessage() {
     var newDate = new Date();
     console.log(newDate);
     var newMessage = document.getElementById('message-field').value;
-    var newMessageHTML = `<span>${newMessage} <span class="messageTime">${newDate}</span></span>`
+    var newMessageHTML = `<span class="messageContent">${newMessage}</span>`
 
     if (newMessage === '') {
         alert('Please enter message');
     } else {
     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
-                                                                                                           <span>${newMessageHTML}</span> <button class="deleteButton btn btn-default">Delete</button>
+                                                                                                           <span>${newMessageHTML}</span> <span class="messageTime">${newDate}</span><button class="editButton btn btn-default">Edit</button><button class="deleteButton btn btn-default">Delete</button>
                                                                                                         </div>`);
     }
     //resets message input to blank
@@ -201,3 +220,5 @@ clearBoardBut.addEventListener("click", clearBoard);
 
 // Event listener for delete buttons
 document.querySelector("body").addEventListener("click", deleteMessage);
+
+document.querySelector("body").addEventListener("click", editMessage);
