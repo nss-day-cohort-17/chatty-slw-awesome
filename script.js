@@ -1,3 +1,14 @@
+
+//GLOBAL VAR
+var messageObject;
+var messageArray = [];
+var numberOfMessages = 0;
+var jsonFiles = ["message1.json", "message2.json", "message3.json", "message4.json", "message5.json"];
+var index;
+
+
+
+
 //Create Function to disable clearMessageBoard button if no messages
 //Also checks to see if messages to know whether to activate or disable button
 
@@ -17,10 +28,10 @@ var checkForMessages = function () {
 //Loads Default Messages into Page
 
 function addDefaultMessages(){
-    for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
+    for (var i = 0; i < messageArray.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span class="userName">${messageObject.defaultMessageList[i].user} </span><span class="messageContent">${messageObject.defaultMessageList[i].message} </span><span class="messageTime"> ${messageObject.defaultMessageList[i].time}</span><button class="deleteButton btn btn-default">Delete</button>
+                                                                                        <span class="userName">${messageArray[i].user} </span><span class="messageContent">${messageArray[i].message} </span><span class="messageTime"> ${messageArray[i].time}</span><button class="deleteButton btn btn-default">Delete</button>
                                                                                     </div`)
         numberOfMessages++;
     }
@@ -157,28 +168,29 @@ document.getElementById('message-field').addEventListener('keypress', function (
 })
 
 
+// var parseJson = function (e) {
+//   messageArray[index] = JSON.parse(e.target.responseText);
+//   console.log(messageArray);
+//       }
 
 
 
-//GLOBAL VAR
-var messageObject;
-var numberOfMessages = 0;
+//request and parse json files
 
-
-
-
-//Parsed JSON file to get messages as javascript object
-var parseMessages = function(e) {
-  messageObject = JSON.parse(e.target.responseText);
+var getJson = function () {
+  for (var i = 0; i < jsonFiles.length; i++) {
+    var messageRequest = new XMLHttpRequest();
+    messageRequest.addEventListener("load", function (e) {
+      messageArray[i] = JSON.parse(e.target.responseText);
+      });
+    //using async attribute to make page wait for load
+    messageRequest.open("GET", jsonFiles[i], false);
+    messageRequest.send();
+  }
   addDefaultMessages();
 }
 
-
-//Request to JSON file to get placeholder messages
-var messageRequest = new XMLHttpRequest();
-messageRequest.addEventListener("load", parseMessages);
-messageRequest.open("GET", "messages.json");
-messageRequest.send();
+getJson();
 
 
 
