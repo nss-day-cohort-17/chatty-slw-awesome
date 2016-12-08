@@ -1,3 +1,12 @@
+
+//GLOBAL VAR
+var messageObject;
+var messageArray = [];
+var numberOfMessages = 0;
+
+
+
+
 //Create Function to disable clearMessageBoard button if no messages
 //Also checks to see if messages to know whether to activate or disable button
 
@@ -17,10 +26,10 @@ var checkForMessages = function () {
 //Loads Default Messages into Page
 
 function addDefaultMessages(){
-    for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
+    for (var i = 0; i < messageArray.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span class="userName">${messageObject.defaultMessageList[i].user} </span><span class="messageContent">${messageObject.defaultMessageList[i].message} </span><span class="messageTime"> ${messageObject.defaultMessageList[i].time}</span><button class="deleteButton btn btn-default">Delete</button>
+                                                                                        <span class="userName">${messageArray[i].user} </span><span class="messageContent">${messageArray[i].message} </span><span class="messageTime"> ${messageArray[i].time}</span><button class="deleteButton btn btn-default">Delete</button>
                                                                                     </div`)
         numberOfMessages++;
     }
@@ -160,10 +169,10 @@ document.getElementById('message-field').addEventListener('keypress', function (
 
 
 
-//GLOBAL VAR
-var messageObject;
-var messageArray = [];
-var numberOfMessages = 0;
+// //GLOBAL VAR
+// var messageObject;
+// var messageArray = [];
+// var numberOfMessages = 0;
 
 
 
@@ -171,29 +180,30 @@ var numberOfMessages = 0;
 //Parsed JSON file to get messages as javascript object
 //message 1
 var parseMessage1 = function(e) {
-  messageObject = JSON.parse(e.target.responseText);
+  messageArray[0] = JSON.parse(e.target.responseText);
   getMessage2();
 }
 //message 2
 var parseMessage2 = function(e) {
-  messageObject = JSON.parse(e.target.responseText);
+  messageArray[1] = JSON.parse(e.target.responseText);
   getMessage3();
 }
 //message 3
 var parseMessage3 = function(e) {
-  messageObject = JSON.parse(e.target.responseText);
+  messageArray[2] = JSON.parse(e.target.responseText);
   getMessage4();
 }
 //message 4
 var parseMessage4 = function(e) {
-  messageObject = JSON.parse(e.target.responseText);
+  messageArray[3] = JSON.parse(e.target.responseText);
   getMessage5();
 }
 
 //message 5
 var parseMessage5 = function(e) {
-  messageObject = JSON.parse(e.target.responseText);
+  messageArray[4] = JSON.parse(e.target.responseText);
   addDefaultMessages();
+  console.log(messageArray)
 }
 
 
@@ -206,7 +216,7 @@ var parseMessage5 = function(e) {
 var getMessage5 = function() {
   var messageRequest = new XMLHttpRequest();
   messageRequest.addEventListener("load", parseMessage5);
-  messageRequest.open("GET", "message2.json");
+  messageRequest.open("GET", "message5.json");
   messageRequest.send();
 }
 
@@ -217,7 +227,7 @@ var getMessage5 = function() {
 var getMessage4 = function() {
   var messageRequest = new XMLHttpRequest();
   messageRequest.addEventListener("load", parseMessage4);
-  messageRequest.open("GET", "message2.json");
+  messageRequest.open("GET", "message4.json");
   messageRequest.send();
 }
 
@@ -228,7 +238,7 @@ var getMessage4 = function() {
 var getMessage3 = function() {
   var messageRequest = new XMLHttpRequest();
   messageRequest.addEventListener("load", parseMessage3);
-  messageRequest.open("GET", "message2.json");
+  messageRequest.open("GET", "message3.json");
   messageRequest.send();
 }
 
