@@ -162,23 +162,96 @@ document.getElementById('message-field').addEventListener('keypress', function (
 
 //GLOBAL VAR
 var messageObject;
+var messageArray = [];
 var numberOfMessages = 0;
 
 
 
 
 //Parsed JSON file to get messages as javascript object
-var parseMessages = function(e) {
+//message 1
+var parseMessage1 = function(e) {
+  messageObject = JSON.parse(e.target.responseText);
+  getMessage2();
+}
+//message 2
+var parseMessage2 = function(e) {
+  messageObject = JSON.parse(e.target.responseText);
+  getMessage3();
+}
+//message 3
+var parseMessage3 = function(e) {
+  messageObject = JSON.parse(e.target.responseText);
+  getMessage4();
+}
+//message 4
+var parseMessage4 = function(e) {
+  messageObject = JSON.parse(e.target.responseText);
+  getMessage5();
+}
+
+//message 5
+var parseMessage5 = function(e) {
   messageObject = JSON.parse(e.target.responseText);
   addDefaultMessages();
 }
 
 
 //Request to JSON file to get placeholder messages
+
+
+
+//get message 5
+
+var getMessage5 = function() {
+  var messageRequest = new XMLHttpRequest();
+  messageRequest.addEventListener("load", parseMessage5);
+  messageRequest.open("GET", "message2.json");
+  messageRequest.send();
+}
+
+
+
+//get message 4
+
+var getMessage4 = function() {
+  var messageRequest = new XMLHttpRequest();
+  messageRequest.addEventListener("load", parseMessage4);
+  messageRequest.open("GET", "message2.json");
+  messageRequest.send();
+}
+
+
+
+//get message 3
+
+var getMessage3 = function() {
+  var messageRequest = new XMLHttpRequest();
+  messageRequest.addEventListener("load", parseMessage3);
+  messageRequest.open("GET", "message2.json");
+  messageRequest.send();
+}
+
+
+
+//get message 2
+
+var getMessage2 = function() {
+  var messageRequest = new XMLHttpRequest();
+  messageRequest.addEventListener("load", parseMessage2);
+  messageRequest.open("GET", "message2.json");
+  messageRequest.send();
+
+}
+
+
+//get message 1
+
 var messageRequest = new XMLHttpRequest();
-messageRequest.addEventListener("load", parseMessages);
-messageRequest.open("GET", "messages.json");
+messageRequest.addEventListener("load", parseMessage1);
+messageRequest.open("GET", "message1.json");
 messageRequest.send();
+
 
 
 
