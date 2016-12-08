@@ -128,8 +128,9 @@ function addMessage() {
 
     var newDate = new Date();
     console.log(newDate);
+    var user = document.getElementById("selectUser").value;
     var newMessage = document.getElementById('message-field').value;
-    var newMessageHTML = `<span>${newMessage} <span class="messageTime">${newDate}</span></span>`
+    var newMessageHTML = `<span class="userName">${user} </span><span>${newMessage} <span class="messageTime">${newDate}</span></span>`
 
     if (newMessage === '') {
         alert('Please enter message');
@@ -155,6 +156,28 @@ function checkNumberOfMessages() {
     document.querySelector('#message-container').removeChild(lastMessageDiv);
   }
 }
+
+
+function addAvailableUsers () {
+  console.log("addAvailableUsers function called")
+  var userSelectDropdown = document.getElementById("selectUser");
+
+  console.log(users.names.length, "users names array length")
+
+  for (var i = 0; i < users.names.length; i++) {
+    console.log(users.names[i], "current user")
+    userSelectDropdown.insertAdjacentHTML('beforeend', `<option>${users.names[i]}</option>`);
+  }
+}
+
+
+var users = {
+  names: ["Xavier", "Joanna", "Mackenzie", "Gunter", "Iveta", "Sven"]
+};
+
+addAvailableUsers();
+
+
 
 //  Event Listener for enter keypress. Fires add message function
 
