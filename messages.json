@@ -2,23 +2,28 @@
     "defaultMessageList": [
         {
             "user": "Shorty",
-            "message": "The team name is officially WLS"
+            "message": "The team name is officially WLS",
+            "time": "12/06/2016 12:54 1s"
         },
         {
             "user": "Westley",
-            "message": "The team name is officially WLS, yes"
+            "message": "The team name is officially WLS, yes",
+            "time": "12/06/2016 13:45 5s"
         },
         {
             "user": "Luke Skywalker",
-            "message": "Seaguls got yoda"
+            "message": "Seaguls got yoda",
+            "time": "12/06/2016 14:07 31s"
         },
         {
             "user": "me",
-            "message": "css is devil magic, very bad"
+            "message": "css is devil magic, very bad",
+            "time": "12/06/2016 15:24 14s"
         },
         {
             "user": "Westley again",
-            "message": "im gettin' hangry, yes"
+            "message": "im gettin' hangry, yes",
+            "time": "12/06/2016 16:11 45s"
         }
     ]
 }
