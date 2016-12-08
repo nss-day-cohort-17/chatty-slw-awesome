@@ -3,6 +3,8 @@
 var messageObject;
 var messageArray = [];
 var numberOfMessages = 0;
+var jsonFiles = ["message1.json", "message2.json", "message3.json", "message4.json", "message5.json"];
+var index;
 
 
 
@@ -166,102 +168,29 @@ document.getElementById('message-field').addEventListener('keypress', function (
 })
 
 
+// var parseJson = function (e) {
+//   messageArray[index] = JSON.parse(e.target.responseText);
+//   console.log(messageArray);
+//       }
 
 
 
-// //GLOBAL VAR
-// var messageObject;
-// var messageArray = [];
-// var numberOfMessages = 0;
+//request and parse json files
 
-
-
-
-//Parsed JSON file to get messages as javascript object
-//message 1
-var parseMessage1 = function(e) {
-  messageArray[0] = JSON.parse(e.target.responseText);
-  getMessage2();
-}
-//message 2
-var parseMessage2 = function(e) {
-  messageArray[1] = JSON.parse(e.target.responseText);
-  getMessage3();
-}
-//message 3
-var parseMessage3 = function(e) {
-  messageArray[2] = JSON.parse(e.target.responseText);
-  getMessage4();
-}
-//message 4
-var parseMessage4 = function(e) {
-  messageArray[3] = JSON.parse(e.target.responseText);
-  getMessage5();
-}
-
-//message 5
-var parseMessage5 = function(e) {
-  messageArray[4] = JSON.parse(e.target.responseText);
+var getJson = function () {
+  for (var i = 0; i < jsonFiles.length; i++) {
+    var messageRequest = new XMLHttpRequest();
+    messageRequest.addEventListener("load", function (e) {
+      messageArray[i] = JSON.parse(e.target.responseText);
+      });
+    //using async attribute to make page wait for load
+    messageRequest.open("GET", jsonFiles[i], false);
+    messageRequest.send();
+  }
   addDefaultMessages();
-  console.log(messageArray)
 }
 
-
-//Request to JSON file to get placeholder messages
-
-
-
-//get message 5
-
-var getMessage5 = function() {
-  var messageRequest = new XMLHttpRequest();
-  messageRequest.addEventListener("load", parseMessage5);
-  messageRequest.open("GET", "message5.json");
-  messageRequest.send();
-}
-
-
-
-//get message 4
-
-var getMessage4 = function() {
-  var messageRequest = new XMLHttpRequest();
-  messageRequest.addEventListener("load", parseMessage4);
-  messageRequest.open("GET", "message4.json");
-  messageRequest.send();
-}
-
-
-
-//get message 3
-
-var getMessage3 = function() {
-  var messageRequest = new XMLHttpRequest();
-  messageRequest.addEventListener("load", parseMessage3);
-  messageRequest.open("GET", "message3.json");
-  messageRequest.send();
-}
-
-
-
-//get message 2
-
-var getMessage2 = function() {
-  var messageRequest = new XMLHttpRequest();
-  messageRequest.addEventListener("load", parseMessage2);
-  messageRequest.open("GET", "message2.json");
-  messageRequest.send();
-
-}
-
-
-//get message 1
-
-var messageRequest = new XMLHttpRequest();
-messageRequest.addEventListener("load", parseMessage1);
-messageRequest.open("GET", "message1.json");
-messageRequest.send();
-
+getJson();
 
 
 
