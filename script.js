@@ -29,6 +29,7 @@ function addDefaultMessages(){
 
 //Function deletes messages on the individual delete message button
 
+
 function deleteMessage(event){
 
     if (event.target.className.split(' ')[0] === "deleteButton") {
@@ -143,6 +144,7 @@ var messageObject;
 
 
 
+
 //Parsed JSON file to get messages as javascript object
 var parseMessages = function(e) {
   messageObject = JSON.parse(e.target.responseText);
@@ -158,10 +160,6 @@ var messageRequest = new XMLHttpRequest();
 messageRequest.addEventListener("load", parseMessages);
 messageRequest.open("GET", "messages.json");
 messageRequest.send();
-
-
-
-
 
 
 
