@@ -15,8 +15,16 @@ nav {
     margin-left: 2%;
     width: 15%;
     margin-bottom: 2%;
-    font-size: 100%;
-    min-width: 90px;
+    font-size: 75%;
+    min-width: 60px;
+}
+
+.editButton {
+    margin-left: 2%;
+    width: 15%;
+    margin-bottom: 2%;
+    font-size: 75%;
+    min-width: 60px;
 }
 
 .messageContainer {
@@ -79,6 +87,22 @@ label {
     font-weight: 400;
 }
 
+
+/*Message Styling*/
+
+
+/*style for user name*/
+
+.userName {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.messageTime {
+    font-size: .5em;
+}
+
+
 /*DARKTHEME*/
 .darkThemeBody {
     background-color: darkgrey;
@@ -88,9 +112,15 @@ label {
     color:white;
 }
 
+
+
+
+
+
+
 /*RESPONSIVE*/
 
-@media (min-width: 768px) and (max-width: 991px) { 
+@media (min-width: 768px) and (max-width: 991px) {
 
     body {
         padding-top: 120px;
@@ -116,7 +146,7 @@ label {
 
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
 
     body {
         padding-top: 170px;

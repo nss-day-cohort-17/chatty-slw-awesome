@@ -20,9 +20,11 @@ function addDefaultMessages(){
     for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span>${messageObject.defaultMessageList[i].message}</span> <button class="deleteButton btn btn-default">Delete</button>
+                                                                                        <span class="userName">${messageObject.defaultMessageList[i].user} </span><span class="messageContent">${messageObject.defaultMessageList[i].message} </span><span class="messageTime"> ${messageObject.defaultMessageList[i].time}</span><button class="editButton btn btn-default">Edit</button><button class="deleteButton btn btn-default">Delete</button>
                                                                                     </div`)
+        numberOfMessages++;
     }
+    //console.log(numberOfMessages)
 }
 
 
@@ -39,8 +41,26 @@ function deleteMessage(event){
     }
     checkForMessages();
 
-
 }
+
+// function that brings up an input to edit old message on button press
+
+function editMessage(event){
+
+    
+    if (event.target.className.split(' ')[0] === "editButton") {
+
+      console.log(event)
+
+      var currentMessageText = event.path[1].querySelector('.messageContent').innerText;
+
+      event.path[1].querySelector('.messageContent').outerHTML = `<input type="text" id="edit-message-field" class="form-control" value="${currentMessageText}">`
+
+    }
+    // checkForMessages();
+}
+
+
 
 // Function to add a dark theme to page
 
@@ -111,19 +131,35 @@ document.getElementById('textSize').addEventListener('change', addLargeText);
 //  Function that adds New Message to Message Container
 
 function addMessage() {
+
+    var newDate = new Date();
+    console.log(newDate);
     var newMessage = document.getElementById('message-field').value;
-    var newMessageHTML = `<span>${newMessage}</span>`
+    var newMessageHTML = `<span class="messageContent">${newMessage}</span>`
 
     if (newMessage === '') {
         alert('Please enter message');
     } else {
     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
-                                                                                                           <span>${newMessageHTML}</span> <button class="deleteButton btn btn-default">Delete</button>
+                                                                                                           <span>${newMessageHTML}</span> <span class="messageTime">${newDate}</span><button class="editButton btn btn-default">Edit</button><button class="deleteButton btn btn-default">Delete</button>
                                                                                                         </div>`);
     }
     //resets message input to blank
     document.getElementById('message-field').value = "";
     checkForMessages();
+
+    numberOfMessages++;
+    // Delete a message if number of messages is greater than 20
+    checkNumberOfMessages()
+}
+
+
+function checkNumberOfMessages() {
+  if (numberOfMessages > 20) {
+    var lastMessageDiv = document.querySelector('#message-container').lastChild
+
+    document.querySelector('#message-container').removeChild(lastMessageDiv);
+  }
 }
 
 //  Event Listener for enter keypress. Fires add message function
@@ -139,8 +175,11 @@ document.getElementById('message-field').addEventListener('keypress', function (
 
 
 
+
+
 //GLOBAL VAR
 var messageObject;
+var numberOfMessages = 0;
 
 
 
@@ -151,9 +190,6 @@ var parseMessages = function(e) {
   addDefaultMessages();
 }
 
-
-// delete button event listener
-//document.querySelector(".deleteButton").addEventListener("click", deleteMessage);
 
 //Request to JSON file to get placeholder messages
 var messageRequest = new XMLHttpRequest();
@@ -182,3 +218,28 @@ clearBoardBut.addEventListener("click", clearBoard);
 
 // Event listener for delete buttons
 document.querySelector("body").addEventListener("click", deleteMessage);
+
+document.querySelector("body").addEventListener("click", editMessage);
+
+document.querySelector('body').addEventListener('keypress', editMessageEnterKey)
+
+function editMessageEnterKey(e) {
+    var key = e.which || e.keyCode;
+      if (key === 13) {
+     
+     if (e.path[0].className === 'form-control') {
+      var editedMessage = e.path[0].value;
+
+      e.path[0].outerHTML = `<span class="messageContent">${editedMessage}</span> `
+     }
+  }
+
+}
+// document.getElementById('edit-message-field').addEventListener('keypress', function (e) {
+//     var key = e.which || e.keyCode;
+//     if (key === 13) {
+      
+//         console.log('HEY');
+
+//     }
+// })
