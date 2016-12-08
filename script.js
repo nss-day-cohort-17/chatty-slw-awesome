@@ -22,7 +22,9 @@ function addDefaultMessages(){
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
                                                                                         <span class="userName">${messageObject.defaultMessageList[i].user} </span><span class="messageContent">${messageObject.defaultMessageList[i].message} </span><span class="messageTime"> ${messageObject.defaultMessageList[i].time}</span><button class="deleteButton btn btn-default">Delete</button>
                                                                                     </div`)
+        numberOfMessages++;
     }
+    //console.log(numberOfMessages)
 }
 
 
@@ -124,6 +126,19 @@ function addMessage() {
     //resets message input to blank
     document.getElementById('message-field').value = "";
     checkForMessages();
+
+    numberOfMessages++;
+    // Delete a message if number of messages is greater than 20
+    checkNumberOfMessages()
+}
+
+
+function checkNumberOfMessages() {
+  if (numberOfMessages > 20) {
+    var lastMessageDiv = document.querySelector('#message-container').lastChild
+
+    document.querySelector('#message-container').removeChild(lastMessageDiv);
+  }
 }
 
 //  Event Listener for enter keypress. Fires add message function
@@ -139,8 +154,11 @@ document.getElementById('message-field').addEventListener('keypress', function (
 
 
 
+
+
 //GLOBAL VAR
 var messageObject;
+var numberOfMessages = 0;
 
 
 
@@ -151,9 +169,6 @@ var parseMessages = function(e) {
   addDefaultMessages();
 }
 
-
-// delete button event listener
-//document.querySelector(".deleteButton").addEventListener("click", deleteMessage);
 
 //Request to JSON file to get placeholder messages
 var messageRequest = new XMLHttpRequest();
