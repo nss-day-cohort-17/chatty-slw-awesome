@@ -87,3 +87,84 @@ label {
 .darkText {
     color:white;
 }
+
+/*RESPONSIVE*/
+
+@media (min-width: 768px) and (max-width: 991px) { 
+
+    body {
+        padding-top: 120px;
+    }
+
+    #clear-button {
+        margin-left: 90px;
+    }
+
+    #logo {
+        text-align: center;
+        letter-spacing: 10px;
+        margin-bottom: 10px;
+    }
+
+    #message-field {
+        width: 115%;
+    }
+
+    #checkboxes {
+        margin-left: 5%;
+    }
+
+}
+
+@media (max-width: 768px) { 
+
+    body {
+        padding-top: 170px;
+    }
+
+    #clear-button {
+        margin-left: 30%;
+    }
+
+    #logo {
+        text-align: center;
+        letter-spacing: 10px;
+        margin-bottom: 10px;
+    }
+
+     #message-field {
+        width: 90%;
+    }
+
+     #checkboxes {
+        padding-left: 24%;
+        font-size: 20px;
+    }
+
+    #messageContainer {
+        margin-left: 50%;
+        margin-right: 50%;
+    }
+
+    #theme {
+        display: inline;
+    }
+
+}
+
+@media (max-width: 458px) {
+
+    #checkboxes {
+        padding-right: 42%;
+        font-size: 17px;
+    }
+
+    #textSize {
+        display: inline-block;
+    }
+
+    #large-label {
+        display: inline;
+    }
+
+}

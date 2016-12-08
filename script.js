@@ -11,8 +11,7 @@ function addDefaultMessages(){
 }
 
 
-function deleteMessage(e){
-
+function deleteMessage(event){
 
     if (event.target.className.split(' ')[0] === "deleteButton") {
 
@@ -109,55 +108,6 @@ var checkForMessages = function () {
 }
 
 
-
-
-
-
-//this function adds functionality to the delete button on the messages themselves
-function deleteMessage(e){
-    //console.log("deleteMessage function called")
-    console.log("event ", e)
-
-    if (event.target.className === "deleteButton"){
-        //console.log("delete button clicked")
-        //console.log(event.target.parentElement);
-
-        var removeThisDiv = event.target.parentElement
-        event.target.parentElement.parentNode.removeChild(removeThisDiv);
-    }
-}
-
-// //  Function that adds New Message to Message Container
-
-// function addMessage() {
-//     var newMessage = document.getElementById('message-field').value;
-//     var newMessageHTML = `<span>${newMessage}</span>`
-
-//     if (newMessage === '') {
-//         alert('Please enter message');
-//     } else {
-//     var messageContainer = document.querySelector('.messageContainer').insertAdjacentHTML('afterbegin', `<div>
-//                                                                                                            <span>${newMessageHTML}</span> <button class="deleteButton">Delete</button>
-//                                                                                                         </div>`);
-//     document.querySelector("body").addEventListener("click", deleteMessage);
-//     }
-//     //resets message input to blank
-//     document.getElementById('message-field').value = "";
-//     checkForMessages();
-// }
-
-// //  Event Listener for enter keypress. Fires add message function
-
-// document.getElementById('message-field').addEventListener('keypress', function (e) {
-//     var key = e.which || e.keyCode;
-//     if (key === 13) {
-//         e.preventDefault();
-//         addMessage();
-
-//     }
-// })
-
-
 // Function to test other functions
 
 var test = function() {
@@ -180,10 +130,6 @@ var messageRequest = new XMLHttpRequest();
 messageRequest.addEventListener("load", parseMessages);
 messageRequest.open("GET", "messages.json");
 messageRequest.send();
-
-
-
-
 
 
 
