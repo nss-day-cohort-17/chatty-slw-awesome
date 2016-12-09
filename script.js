@@ -1,3 +1,14 @@
+
+//GLOBAL VAR
+var messageObject;
+var messageArray = [];
+var numberOfMessages = 0;
+var jsonFiles = ["message1.json", "message2.json", "message3.json", "message4.json", "message5.json"];
+var index;
+
+
+
+
 //Create Function to disable clearMessageBoard button if no messages
 //Also checks to see if messages to know whether to activate or disable button
 
@@ -17,10 +28,12 @@ var checkForMessages = function () {
 //Loads Default Messages into Page
 
 function addDefaultMessages(){
-    for (var i = 0; i < messageObject.defaultMessageList.length; i++) {
+    for (var i = 0; i < messageArray.length; i++) {
 
         document.querySelector('.messageContainer').insertAdjacentHTML('beforeend', `<div>
-                                                                                        <span class="userName">${messageObject.defaultMessageList[i].user} </span><span class="messageContent">${messageObject.defaultMessageList[i].message} </span><span class="messageTime"> ${messageObject.defaultMessageList[i].time}</span><button class="editButton btn btn-default">Edit</button><button class="deleteButton btn btn-default">Delete</button>
+
+                                                                                        <span class="userName">${messageArray[i].user} </span><span class="messageContent">${messageArray[i].message} </span><span class="messageTime"> ${messageArray[i].time}</span><button class="editButton btn btn-default">Edit</button><button class="deleteButton btn btn-default">Delete</button>
+
                                                                                     </div`)
         numberOfMessages++;
     }
@@ -47,14 +60,14 @@ function deleteMessage(event){
 
 function editMessage(event){
 
-    
+
     if (event.target.className.split(' ')[0] === "editButton") {
 
-      console.log(event)
+      console.log(event.path[1])
 
       var currentMessageText = event.path[1].querySelector('.messageContent').innerText;
 
-      event.path[1].querySelector('.messageContent').outerHTML = `<input type="text" id="edit-message-field" class="form-control" value="${currentMessageText}">`
+      event.path[1].querySelector('.messageContent').outerHTML = `<input type="text" id="edit-message-field" class="form-control form-control-edit" value="${currentMessageText}">`
 
     }
     // checkForMessages();
@@ -134,8 +147,13 @@ function addMessage() {
 
     var newDate = new Date();
     console.log(newDate);
+    var user = document.getElementById("selectUser").value;
     var newMessage = document.getElementById('message-field').value;
-    var newMessageHTML = `<span class="messageContent">${newMessage}</span>`
+// <<<<<<< HEAD
+//     var newMessageHTML = `<span class="messageContent">${newMessage}</span>`
+// =======
+    var newMessageHTML = `<span class="userName">${user} </span><span class="messageContent">${newMessage}</span>`
+// >>>>>>> BETA
 
     if (newMessage === '') {
         alert('Please enter message');
@@ -162,6 +180,28 @@ function checkNumberOfMessages() {
   }
 }
 
+
+function addAvailableUsers () {
+  console.log("addAvailableUsers function called")
+  var userSelectDropdown = document.getElementById("selectUser");
+
+  console.log(users.names.length, "users names array length")
+
+  for (var i = 0; i < users.names.length; i++) {
+    console.log(users.names[i], "current user")
+    userSelectDropdown.insertAdjacentHTML('beforeend', `<option>${users.names[i]}</option>`);
+  }
+}
+
+
+var users = {
+  names: ["Xavier", "Joanna", "Mackenzie", "Gunter", "Iveta", "Sven"]
+};
+
+addAvailableUsers();
+
+
+
 //  Event Listener for enter keypress. Fires add message function
 
 document.getElementById('message-field').addEventListener('keypress', function (e) {
@@ -174,28 +214,29 @@ document.getElementById('message-field').addEventListener('keypress', function (
 })
 
 
+// var parseJson = function (e) {
+//   messageArray[index] = JSON.parse(e.target.responseText);
+//   console.log(messageArray);
+//       }
 
 
 
-//GLOBAL VAR
-var messageObject;
-var numberOfMessages = 0;
+//request and parse json files
 
-
-
-
-//Parsed JSON file to get messages as javascript object
-var parseMessages = function(e) {
-  messageObject = JSON.parse(e.target.responseText);
+var getJson = function () {
+  for (var i = 0; i < jsonFiles.length; i++) {
+    var messageRequest = new XMLHttpRequest();
+    messageRequest.addEventListener("load", function (e) {
+      messageArray[i] = JSON.parse(e.target.responseText);
+      });
+    //using async attribute to make page wait for load
+    messageRequest.open("GET", jsonFiles[i], false);
+    messageRequest.send();
+  }
   addDefaultMessages();
 }
 
-
-//Request to JSON file to get placeholder messages
-var messageRequest = new XMLHttpRequest();
-messageRequest.addEventListener("load", parseMessages);
-messageRequest.open("GET", "messages.json");
-messageRequest.send();
+getJson();
 
 
 
@@ -224,10 +265,13 @@ document.querySelector("body").addEventListener("click", editMessage);
 document.querySelector('body').addEventListener('keypress', editMessageEnterKey)
 
 function editMessageEnterKey(e) {
+console.log("edit MessageEnterKey function called")
+console.log(e.path);
     var key = e.which || e.keyCode;
       if (key === 13) {
-     
-     if (e.path[0].className === 'form-control') {
+console.log("editMessage the key is enter")
+     if (e.path[0].className === 'form-control form-control-edit') {
+      console.log("editMessage this is the right path?")
       var editedMessage = e.path[0].value;
 
       e.path[0].outerHTML = `<span class="messageContent">${editedMessage}</span> `
@@ -235,11 +279,3 @@ function editMessageEnterKey(e) {
   }
 
 }
-// document.getElementById('edit-message-field').addEventListener('keypress', function (e) {
-//     var key = e.which || e.keyCode;
-//     if (key === 13) {
-      
-//         console.log('HEY');
-
-//     }
-// })
