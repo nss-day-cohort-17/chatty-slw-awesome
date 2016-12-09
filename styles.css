@@ -113,7 +113,14 @@ label {
 }
 
 
+/*dropdown*/
 
+#selectUser {
+    margin-top: 1em;
+    margin-right: .5em;
+    margin-left: 1em;
+
+}
 
 
 
@@ -149,7 +156,7 @@ label {
 @media (max-width: 768px) {
 
     body {
-        padding-top: 170px;
+        padding-top: 200px;
     }
 
     #clear-button {

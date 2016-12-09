@@ -63,11 +63,11 @@ function editMessage(event){
 
     if (event.target.className.split(' ')[0] === "editButton") {
 
-      console.log(event)
+      console.log(event.path[1])
 
       var currentMessageText = event.path[1].querySelector('.messageContent').innerText;
 
-      event.path[1].querySelector('.messageContent').outerHTML = `<input type="text" id="edit-message-field" class="form-control" value="${currentMessageText}">`
+      event.path[1].querySelector('.messageContent').outerHTML = `<input type="text" id="edit-message-field" class="form-control form-control-edit" value="${currentMessageText}">`
 
     }
     // checkForMessages();
@@ -152,7 +152,7 @@ function addMessage() {
 // <<<<<<< HEAD
 //     var newMessageHTML = `<span class="messageContent">${newMessage}</span>`
 // =======
-    var newMessageHTML = `<span class="userName">${user} </span><span>${newMessage} <span class="messageTime">${newDate}</span></span>`
+    var newMessageHTML = `<span class="userName">${user} </span><span class="messageContent">${newMessage}</span>`
 // >>>>>>> BETA
 
     if (newMessage === '') {
@@ -265,10 +265,13 @@ document.querySelector("body").addEventListener("click", editMessage);
 document.querySelector('body').addEventListener('keypress', editMessageEnterKey)
 
 function editMessageEnterKey(e) {
+console.log("edit MessageEnterKey function called")
+console.log(e.path);
     var key = e.which || e.keyCode;
       if (key === 13) {
-
-     if (e.path[0].className === 'form-control') {
+console.log("editMessage the key is enter")
+     if (e.path[0].className === 'form-control form-control-edit') {
+      console.log("editMessage this is the right path?")
       var editedMessage = e.path[0].value;
 
       e.path[0].outerHTML = `<span class="messageContent">${editedMessage}</span> `
